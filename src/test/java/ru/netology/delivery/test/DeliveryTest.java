@@ -33,19 +33,19 @@ public class DeliveryTest {
         $("[data-test-id=\"agreement\"] .checkbox__box").click();
         $(byText("Запланировать")).click();
 
-        $("div[data-test-id='success-notification']").should(Condition.visible, Duration.ofSeconds(15));
+        $("div[data-test-id='success-notification']").shouldBe(Condition.visible, Duration.ofSeconds(15));
         String notification__content = "Встреча успешно запланирована на ";
         $("div.notification__content").shouldHave(Condition.text(notification__content + date1));
 
         $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
         $("[placeholder=\"Дата встречи\"]").setValue(date2);
         $(byText("Запланировать")).click();
-        $("div[data-test-id='replan-notification']").should(Condition.visible);
+        $("div[data-test-id='replan-notification']").shouldBe(Condition.visible);
         String replan__button__text = "Перепланировать";
         $("div[data-test-id='replan-notification'] .button__text").shouldHave(Condition.text(replan__button__text));
         $("div[data-test-id='replan-notification'] .button__text").click();
 
-        $("div[data-test-id='success-notification']").should(Condition.visible, Duration.ofSeconds(15));
+        $("div[data-test-id='success-notification']").shouldBe(Condition.visible, Duration.ofSeconds(15));
         $("div.notification__content").shouldHave(Condition.text(notification__content + date2));
     }
 }
